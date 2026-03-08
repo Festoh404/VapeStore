@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaporSync | Premium E-Liquids & Kits</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        ::selection {
+            background-color: rgba(6, 182, 212, 0.3);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-slate-950 text-slate-200 font-sans">
+
+    <div id="age-gate"
+        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-xl p-4 transition-opacity duration-500">
+        <div
+            class="max-w-md w-full bg-slate-900 border border-cyan-500/30 rounded-3xl p-8 text-center shadow-[0_0_50px_rgba(6,182,212,0.15)]">
+            <i data-lucide="alert-triangle"
+                class="w-16 h-16 text-cyan-400 mx-auto mb-6 drop-shadow-[0_0_10px_rgba(6,182,212,0.8)]"></i>
+            <h1 class="text-3xl font-black text-white mb-4 uppercase tracking-wider">Age Verification</h1>
+            <p class="text-slate-400 mb-8 leading-relaxed">
+                You must be 18/21+ (depending on your jurisdiction) to enter this site. Please confirm your age.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button id="btn-verify"
+                    class="flex-1 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)]">
+                    I AM OF LEGAL AGE
+                </button>
+                <button
+                    class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 rounded-xl transition-colors duration-300 border border-slate-700">
+                    I AM UNDERAGE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <header id="main-header"
+        class="fixed w-full top-0 z-50 transition-all duration-300 border-b bg-transparent border-transparent py-6">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <div class="flex items-center gap-2 group cursor-pointer">
+                <i data-lucide="wind"
+                    class="w-8 h-8 text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] transition-all"></i>
+                <span class="text-2xl font-black text-white tracking-tighter uppercase">Vapor<span
+                        class="text-cyan-400">Sync</span></span>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-8 font-semibold tracking-wide">
+                <a href="#" class="hover:text-cyan-400 transition-colors">Vape Kits</a>
+                <a href="#" class="hover:text-cyan-400 transition-colors">E-Liquids</a>
+                <a href="#" class="hover:text-cyan-400 transition-colors">Disposables</a>
+            </nav>
+
+            <div class="flex items-center gap-6">
+                <button class="hidden sm:block text-slate-400 hover:text-cyan-400 transition-colors">
+                    <i data-lucide="search" class="w-6 h-6"></i>
+                </button>
+                <button class="relative text-slate-400 hover:text-cyan-400 transition-colors">
+                    <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    <span
+                        class="absolute -top-2 -right-2 bg-cyan-500 text-slate-950 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">2</span>
+                </button>
+                <button class="md:hidden text-slate-400 hover:text-cyan-400 transition-colors">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden px-6">
+        <div
+            class="absolute top-1/4 -left-64 w-96 h-96 bg-cyan-600/20 rounded-full mix-blend-screen filter blur-[100px] animate-pulse">
+        </div>
+        <div
+            class="absolute bottom-1/4 -right-64 w-[30rem] h-[30rem] bg-blue-600/10 rounded-full mix-blend-screen filter blur-[120px] animate-pulse delay-1000">
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-5xl lg:text-7xl font-black text-white leading-tight mb-6 uppercase">
+                    Next-Gen <br />
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                        Vaping
+                    </span> Experience
+                </h1>
+                <p class="text-lg text-slate-400 mb-8 max-w-xl leading-relaxed">
+                    Premium hardware, top-shelf liquids, and futuristic disposables. Engineered for maximum flavor and
+                    dense clouds.
+                </p>
+                <div class="flex gap-4">
+                    <button
+                        class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.4)] flex items-center gap-2">
+                        Shop Now <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+            <div
+                class="relative h-[400px] lg:h-[500px] rounded-3xl bg-gradient-to-tr from-slate-900 to-slate-800 border border-slate-700/50 flex items-center justify-center shadow-2xl overflow-hidden group">
+                <div
+                    class="absolute inset-0 bg-[url('https://via.placeholder.com/800x600/1e293b/06b6d4?text=Product+Slider')] bg-cover bg-center opacity-50 group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="relative z-10 text-center">
+                    <span
+                        class="inline-block px-4 py-1 rounded-full bg-cyan-500/20 border border-cyan-500/50 text-cyan-400 font-bold text-sm mb-4 backdrop-blur-md">New
+                        Arrival</span>
+                    <h3 class="text-3xl font-black text-white">Aero Pod Pro</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <h2 class="text-3xl font-black text-white mb-8 uppercase tracking-wide">Explore Categories</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 h-auto md:h-[600px]">
+
+            <div
+                class="md:col-span-2 md:row-span-2 rounded-3xl bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 hover:border-cyan-500/50 transition-colors p-8 relative overflow-hidden group cursor-pointer flex flex-col justify-end min-h-[300px]">
+                <div
+                    class="absolute inset-0 bg-[url('https://via.placeholder.com/800x800/0f172a/06b6d4?text=Premium+Kits')] bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-500">
+                </div>
+                <div class="relative z-10">
+                    <h3 class="text-4xl font-black text-white mb-2">Premium Kits</h3>
+                    <p class="text-slate-400 mb-6 max-w-sm">Build your perfect setup with our curated high-end mods and
+                        tanks.</p>
+                    <button
+                        class="bg-white/10 hover:bg-cyan-500 text-white font-bold px-6 py-3 rounded-xl backdrop-blur-md transition-all inline-flex items-center gap-2">
+                        Explore <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div
+                class="rounded-3xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-colors p-8 relative overflow-hidden group cursor-pointer flex flex-col justify-end min-h-[250px]">
+                <div
+                    class="absolute inset-0 bg-[url('https://via.placeholder.com/400x400/0f172a/3b82f6?text=E-Liquids')] bg-cover bg-center opacity-30 group-hover:opacity-50 transition-opacity duration-500">
+                </div>
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-black text-white mb-2">E-Liquids</h3>
+                    <span class="text-cyan-400 font-semibold group-hover:underline">Shop Flavors &rarr;</span>
+                </div>
+            </div>
+
+            <div
+                class="rounded-3xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-colors p-8 relative overflow-hidden group cursor-pointer flex flex-col justify-end min-h-[250px]">
+                <div
+                    class="absolute inset-0 bg-[url('https://via.placeholder.com/400x400/0f172a/8b5cf6?text=Disposables')] bg-cover bg-center opacity-30 group-hover:opacity-50 transition-opacity duration-500">
+                </div>
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-black text-white mb-2">Disposables</h3>
+                    <span class="text-cyan-400 font-semibold group-hover:underline">Grab & Go &rarr;</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-20">
+        <div class="flex justify-between items-end mb-10">
+            <h2 class="text-3xl font-black text-white uppercase tracking-wide">Trending Now</h2>
+            <a href="#" class="text-cyan-400 font-bold hover:text-cyan-300 hidden sm:block">View All Products</a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <div
+                class="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 hover:border-cyan-500/50 transition-all group flex flex-col">
+                <div class="aspect-square rounded-xl bg-slate-800 mb-4 overflow-hidden relative">
+                    <img src="https://via.placeholder.com/400x400/1e293b/94a3b8?text=Neon+Blue+Razz"
+                        alt="Neon Blue Razz Ice"
+                        class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500 opacity-80" />
+                    <div
+                        class="absolute top-3 left-3 bg-slate-950/80 backdrop-blur text-xs font-bold px-2 py-1 rounded text-cyan-400">
+                        E-Liquid</div>
+                </div>
+                <div class="flex-grow">
+                    <div class="flex items-center gap-1 mb-2">
+                        <i data-lucide="star" class="w-4 h-4 fill-cyan-400 text-cyan-400"></i>
+                        <span class="text-sm font-bold text-slate-300">4.8</span>
+                    </div>
+                    <h3
+                        class="text-lg font-bold text-white mb-1 line-clamp-1 group-hover:text-cyan-400 transition-colors">
+                        Neon Blue Razz Ice</h3>
+                    <p class="text-xl font-black text-slate-300 mb-4">$19.99</p>
+                </div>
+                <button
+                    class="w-full bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-none hover:shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                    Quick Add
+                </button>
+            </div>
+
+            <div
+                class="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 hover:border-cyan-500/50 transition-all group flex flex-col">
+                <div class="aspect-square rounded-xl bg-slate-800 mb-4 overflow-hidden relative">
+                    <img src="https://via.placeholder.com/400x400/1e293b/94a3b8?text=Cyberpunk+Pod"
+                        alt="Cyberpunk Pod Kit"
+                        class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500 opacity-80" />
+                    <div
+                        class="absolute top-3 left-3 bg-slate-950/80 backdrop-blur text-xs font-bold px-2 py-1 rounded text-cyan-400">
+                        Vape Kits</div>
+                </div>
+                <div class="flex-grow">
+                    <div class="flex items-center gap-1 mb-2">
+                        <i data-lucide="star" class="w-4 h-4 fill-cyan-400 text-cyan-400"></i>
+                        <span class="text-sm font-bold text-slate-300">4.9</span>
+                    </div>
+                    <h3
+                        class="text-lg font-bold text-white mb-1 line-clamp-1 group-hover:text-cyan-400 transition-colors">
+                        Cyberpunk Pod Kit</h3>
+                    <p class="text-xl font-black text-slate-300 mb-4">$45.00</p>
+                </div>
+                <button
+                    class="w-full bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-none hover:shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                    Quick Add
+                </button>
+            </div>
+
+            <div
+                class="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 hover:border-cyan-500/50 transition-all group flex flex-col">
+                <div class="aspect-square rounded-xl bg-slate-800 mb-4 overflow-hidden relative">
+                    <img src="https://via.placeholder.com/400x400/1e293b/94a3b8?text=Quantum+5k"
+                        alt="Quantum Disposable 5k"
+                        class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500 opacity-80" />
+                    <div
+                        class="absolute top-3 left-3 bg-slate-950/80 backdrop-blur text-xs font-bold px-2 py-1 rounded text-cyan-400">
+                        Disposables</div>
+                </div>
+                <div class="flex-grow">
+                    <div class="flex items-center gap-1 mb-2">
+                        <i data-lucide="star" class="w-4 h-4 fill-cyan-400 text-cyan-400"></i>
+                        <span class="text-sm font-bold text-slate-300">4.5</span>
+                    </div>
+                    <h3
+                        class="text-lg font-bold text-white mb-1 line-clamp-1 group-hover:text-cyan-400 transition-colors">
+                        Quantum Disposable 5k</h3>
+                    <p class="text-xl font-black text-slate-300 mb-4">$15.50</p>
+                </div>
+                <button
+                    class="w-full bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-none hover:shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                    Quick Add
+                </button>
+            </div>
+
+            <div
+                class="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 hover:border-cyan-500/50 transition-all group flex flex-col">
+                <div class="aspect-square rounded-xl bg-slate-800 mb-4 overflow-hidden relative">
+                    <img src="https://via.placeholder.com/400x400/1e293b/94a3b8?text=Plasma+Coils"
+                        alt="Plasma Coil Pack"
+                        class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500 opacity-80" />
+                    <div
+                        class="absolute top-3 left-3 bg-slate-950/80 backdrop-blur text-xs font-bold px-2 py-1 rounded text-cyan-400">
+                        Accessories</div>
+                </div>
+                <div class="flex-grow">
+                    <div class="flex items-center gap-1 mb-2">
+                        <i data-lucide="star" class="w-4 h-4 fill-cyan-400 text-cyan-400"></i>
+                        <span class="text-sm font-bold text-slate-300">4.7</span>
+                    </div>
+                    <h3
+                        class="text-lg font-bold text-white mb-1 line-clamp-1 group-hover:text-cyan-400 transition-colors">
+                        Plasma Coil Pack</h3>
+                    <p class="text-xl font-black text-slate-300 mb-4">$12.99</p>
+                </div>
+                <button
+                    class="w-full bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-none hover:shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                    Quick Add
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 border-t border-slate-900 pt-16 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 border-b border-slate-900 pb-16">
+                <div class="flex items-start gap-4">
+                    <i data-lucide="shield-check" class="w-8 h-8 text-cyan-400 flex-shrink-0"></i>
+                    <div>
+                        <h4 class="font-bold text-white mb-1">TPD Compliant</h4>
+                        <p class="text-sm text-slate-400">All products meet strict quality and safety regulations.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <i data-lucide="credit-card" class="w-8 h-8 text-cyan-400 flex-shrink-0"></i>
+                    <div>
+                        <h4 class="font-bold text-white mb-1">Secure Checkout</h4>
+                        <p class="text-sm text-slate-400">256-bit encryption for all your transactions.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <i data-lucide="mail" class="w-8 h-8 text-cyan-400 flex-shrink-0"></i>
+                    <div>
+                        <h4 class="font-bold text-white mb-1">Stay Updated</h4>
+                        <div class="flex mt-2">
+                            <input type="email" placeholder="Enter email"
+                                class="bg-slate-900 border border-slate-800 rounded-l-lg px-4 py-2 w-full focus:outline-none focus:border-cyan-500 text-sm" />
+                            <button
+                                class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-4 py-2 rounded-r-lg transition-colors text-sm">Join</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center text-sm text-slate-500 font-medium">
+                <p class="mb-2">WARNING: This product contains nicotine. Nicotine is an addictive chemical.</p>
+                <p>&copy; 2026 VaporSync Premium E-Liquids. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 2. Age Verification Logic (with localStorage so it remembers you)
+        const ageGate = document.getElementById('age-gate');
+        const btnVerify = document.getElementById('btn-verify');
+
+        // Check if the user already verified their age in a previous session
+        if (localStorage.getItem('vaporSyncAgeVerified') === 'true') {
+            ageGate.style.display = 'none';
+        }
+
+        // Handle button click
+        btnVerify.addEventListener('click', () => {
+            ageGate.style.opacity = '0';
+            setTimeout(() => {
+                ageGate.style.display = 'none';
+            }, 500); // Matches the CSS duration-500
+
+            // Save to local storage so they don't see it again on refresh
+            localStorage.setItem('vaporSyncAgeVerified', 'true');
+        });
+
+        // 3. Sticky Header Logic
+        const header = document.getElementById('main-header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                // Add frosted glass styling
+                header.classList.remove('bg-transparent', 'border-transparent', 'py-6');
+                header.classList.add('bg-slate-950/80', 'backdrop-blur-md', 'border-cyan-500/20', 'py-4');
+            } else {
+                // Remove frosted glass styling
+                header.classList.remove('bg-slate-950/80', 'backdrop-blur-md', 'border-cyan-500/20', 'py-4');
+                header.classList.add('bg-transparent', 'border-transparent', 'py-6');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

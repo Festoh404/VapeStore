@@ -296,23 +296,46 @@ ul { list-style: none; }
     width: auto; 
     margin-bottom: 20px;
     display: block;
-    
-    
+     
 }
 
 
+
 .footer-col p {
-    color: #cbd5e1; 
+    color: #fefefe; 
     line-height: 1.6;
     font-size: 14px;
 }
 
+.footer-col .fa-cc-visa {
+    /* color: #1434CB;  */
+    font-size: 32px; 
+    border-radius: 4px;
+    
+}
+
+
+.footer-col .fa-cc-mastercard {
+    color: #FF5F00; 
+    font-size: 32px;
+    border-radius: 4px;
+}
+
+
+.footer-col .mpesa-icon,
+.footer-col .fa-mobile-alt { 
+    color: #14A751; 
+    font-size: 32px;
+}
+
+
 .payment-icons {
     display: flex;
-    gap: 10px;
-    font-size: 24px;
+    gap: 15px;
     align-items: center;
+    margin-top: 15px;
 }
+
 
 .footer-bottom {
     text-align: center;
@@ -338,9 +361,10 @@ ul { list-style: none; }
 }
 
 .hero-content {
-    flex: 1; /* Takes up half the container */
+    flex: 1; 
     max-width: 600px;
-    text-align: left; /* Aligns all text strictly to the left */
+    text-align: center;
+    margin: 0 auto; 
 }
 
 .hero-content h1 {
@@ -369,7 +393,7 @@ ul { list-style: none; }
 .hero-buttons {
     display: flex;
     gap: 15px;
-    justify-content: flex-start; /* Aligns the buttons to the left */
+    justify-content: center; /* Aligns the buttons to the left */
 }
 
 .hero-image {
@@ -385,6 +409,23 @@ ul { list-style: none; }
     border-radius: 12px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     object-fit: cover;
+    animation: float 6s ease-in-out infinite;
+}
+
+/* --- Zero-Gravity Floating Animation --- */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        transform: translateY(-20px); /* Lifts the image up 20 pixels */
+        box-shadow: 0 40px 60px rgba(0, 0, 0, 0.05); /* Spreads and lightens the shadow */
+    }
+    100% {
+        transform: translateY(0px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
 }
 
 .hero-image {
@@ -429,7 +470,356 @@ ul { list-style: none; }
     background-color: var(--primary-red);
     color: var(--bg-white);
 }
-/* Responsive tweaks */
+
+/* --- Cart Drawer --- */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    visibility: hidden; /* Hidden by default */
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.cart-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden off-screen to the right */
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background: var(--bg-white);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cart-overlay.active .cart-drawer {
+    right: 0; /* Slides in */
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-cart:hover {
+    color: var(--primary-red);
+}
+
+.cart-items {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.empty-cart-message {
+    text-align: center;
+    color: var(--text-light);
+    margin-top: 50px;
+}
+
+.cart-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-light);
+}
+
+.cart-total-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-red);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+.checkout-btn:hover {
+    background: #b71c1c;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.cart-item-price {
+    font-size: 14px;
+    color: var(--primary-red);
+    font-weight: bold;
+}
+
+.cart-item-qty {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+.remove-item:hover {
+    color: var(--primary-red);
+}
+
+.clear-cart-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+}
+
+.clear-cart-btn:hover {
+    color: var(--primary-red);
+}
+
+.cart-item-qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.qty-btn {
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.qty-btn:hover {
+    background: var(--primary-red);
+    color: white;
+    border-color: var(--primary-red);
+}
+
+.qty-amount {
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+/* --- Interactive Product Card Overlays (Text Below Image) --- */
+.product-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-white);
+    padding: 15px; /* Restores the nice padding around the card */
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05); /* Soft shadow on hover */
+}
+
+/* The new wrapper protecting just the image */
+.image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    height: 220px; /* Forces uniform image size */
+    margin-bottom: 15px; /* Space between the image and the text */
+    cursor: pointer;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+/* The glass panel (now inside the image wrapper) */
+.card-overlay {
+    position: absolute;
+    bottom: -100%; /* Hidden below the image */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: bottom 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 10;
+}
+
+
+.product-card.active-card .image-wrapper img {
+    filter: blur(6px);
+    transform: scale(1.1);
+}
+
+.product-card.active-card .card-overlay {
+    bottom: 0; /* Slides the button up over the image */
+}
+
+/* Styling the restored text */
+.product-card h3 {
+    font-size: 16px;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    font-weight: bold;
+    height: auto;
+}
+
+.product-card .price {
+    font-size: 15px;
+    color: var(--primary-red);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* The Add to Cart Button */
+.card-overlay .add-to-cart {
+    width: 75%;
+    height: 45px;
+    border-radius: 25px;
+    background: var(--primary-red);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.card-overlay .add-to-cart:hover {
+    background: #b71c1c;
+    transform: scale(1.05); /* Slight pop when hovered */
+}
+/* --- Typewriter Section --- */
+.typewriter-section {
+    text-align: center;
+    padding: 20px 20px 50px; /* Gives it breathing room before the products */
+    background-color: var(--bg-white);
+}
+
+.typewriter-container h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: var(--text-dark);
+    font-weight: 600;
+    margin: 0;
+}
+
+/* The dynamic words */
+.typed-text {
+    color: var(--primary-red);
+    font-style: italic;
+    font-weight: 800;
+}
+
+/* The blinking cursor */
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: var(--text-dark);
+    margin-left: 4px;
+    animation: blink 1s infinite;
+}
+
+/* Stops the blinking while it's actively typing */
+.cursor.typing {
+    animation: none;
+}
+
+@keyframes blink {
+    0% { background-color: transparent; }
+    50% { background-color: var(--text-dark); }
+    100% { background-color: transparent; }
+}
+
+/* Mobile responsive sizing */
+@media (max-width: 768px) {
+    .typewriter-container h2 { 
+        font-size: 28px; 
+    }
+}
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;

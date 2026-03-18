@@ -266,7 +266,6 @@ function erase() {
   }
 }
 
-// Start the effect exactly half a second after the page loads
 if (textArray.length) {
   setTimeout(type, 500);
 }

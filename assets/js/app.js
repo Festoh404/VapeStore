@@ -217,7 +217,6 @@ updateCart();
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
-// The words you want to cycle through
 const textArray = [
   "e-liquids.",
   "disposable vapes.",
@@ -225,7 +224,6 @@ const textArray = [
   "vape accessories.",
 ];
 
-// Typing speeds (in milliseconds)
 const typingDelay = 100;
 const erasingDelay = 50;
 const newTextDelay = 2000; // How long it pauses before erasing
@@ -268,4 +266,46 @@ function erase() {
 
 if (textArray.length) {
   setTimeout(type, 500);
+}
+
+document.querySelector(".checkout-btn").addEventListener("click", () => {
+  const total = document.querySelector(".total-price").innerText;
+  document.getElementById("modal-total").innerText = total;
+  document.getElementById("payment-modal").style.display = "flex";
+
+  const phoneNumber = "254000000000"; // Your actual phone number (no +)
+  const message = `Hi! I've just sent ${total} for my Vape Store order. Please confirm receipt and process my delivery.`;
+
+  // This encodes the message so it works in a URL
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+  // Attach the URL to the green button
+  document.getElementById("whatsapp-btn").onclick = () => {
+    window.open(whatsappURL, "_blank");
+  };
+});
+
+function copyNumber() {
+  const number = document.getElementById("phone-number").innerText;
+  const icon = document.getElementById("copy-icon");
+
+  navigator.clipboard
+    .writeText(number)
+    .then(() => {
+      // 1. Force the change to the checkmark
+      icon.className = "fas fa-check"; // 'fas' is the solid version, 'fa-check' is the tick
+      icon.style.color = "#14A751";
+      icon.style.transform = "scale(1.3)"; // A nice little pop
+
+      // 2. Revert after exactly 500ms
+      setTimeout(() => {
+        icon.className = "far fa-copy"; // Back to the regular copy icon
+        icon.style.color = "#a0aec0";
+        icon.style.transform = "scale(1)";
+      }, 500);
+    })
+    .catch((err) => {
+      console.error("Failed to copy: ", err);
+    });
 }

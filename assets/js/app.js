@@ -270,6 +270,13 @@ if (textArray.length) {
 
 document.querySelector(".checkout-btn").addEventListener("click", () => {
   const total = document.querySelector(".total-price").innerText;
+  const cartItems = document.querySelectorAll(".cart-item");
+
+  if (cartItems.length === 0 || total === "KSh 0") {
+    document.getElementById("empty-cart-modal").style.display = "flex";
+    return;
+  }
+
   document.getElementById("modal-total").innerText = total;
   document.getElementById("payment-modal").style.display = "flex";
 

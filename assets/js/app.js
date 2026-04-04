@@ -294,20 +294,22 @@ document.querySelector(".checkout-btn").addEventListener("click", () => {
 });
 
 function copyNumber() {
-  const number = document.getElementById("phone-number").innerText;
+  let rawNumber = document.getElementById("phone-number").innerText;
+
+  let cleanNumber = rawNumber.replace(/\s/g, "");
+
   const icon = document.getElementById("copy-icon");
 
+  // 3. Copy the CLEAN version
   navigator.clipboard
-    .writeText(number)
+    .writeText(cleanNumber)
     .then(() => {
-      // 1. Force the change to the checkmark
-      icon.className = "fas fa-check"; // 'fas' is the solid version, 'fa-check' is the tick
+      icon.className = "fas fa-check";
       icon.style.color = "#14A751";
-      icon.style.transform = "scale(1.3)"; // A nice little pop
+      icon.style.transform = "scale(1.3)";
 
-      // 2. Revert after exactly 500ms
       setTimeout(() => {
-        icon.className = "far fa-copy"; // Back to the regular copy icon
+        icon.className = "far fa-copy";
         icon.style.color = "#a0aec0";
         icon.style.transform = "scale(1)";
       }, 500);

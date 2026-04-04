@@ -38,6 +38,7 @@ productCards.forEach((card) => {
     card.classList.toggle("active-card");
   });
 });
+
 // --- Cart State Management ---
 let cart = JSON.parse(localStorage.getItem("vapeShopCart")) || [];
 
@@ -49,7 +50,6 @@ const cartOverlay = document.getElementById("cart-overlay");
 const closeCartBtn = document.getElementById("close-cart");
 
 // --- 1. Core Functions ---
-
 function updateCart() {
   localStorage.setItem("vapeShopCart", JSON.stringify(cart));
 
@@ -67,11 +67,9 @@ function updateCart() {
   let totalPrice = 0;
 
   cart.forEach((item, index) => {
-    // Calculate total price for all items
     const itemTotal = item.price * item.quantity;
     totalPrice += itemTotal;
 
-    // Generate the HTML for each item, now including the +/- buttons
     cartHTML += `
             <div class="cart-item">
                 <img src="${item.image}" alt="${item.title}">
@@ -101,7 +99,7 @@ function updateCart() {
 }
 
 function attachCartButtons() {
-  // 1. Trash Can Button
+  // Trash Can Button
   const removeButtons = document.querySelectorAll(".remove-item");
   removeButtons.forEach((button) => {
     button.addEventListener("click", function () {
@@ -111,34 +109,32 @@ function attachCartButtons() {
     });
   });
 
-  // 2. Plus Button (+)
+  // Plus Button (+)
   const plusButtons = document.querySelectorAll(".plus");
   plusButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const itemIndex = this.getAttribute("data-index");
-      cart[itemIndex].quantity++; // Increase quantity by 1
+      cart[itemIndex].quantity++;
       updateCart();
     });
   });
 
-  // 3. Minus Button (-)
+  // Minus Button (-)
   const minusButtons = document.querySelectorAll(".minus");
   minusButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const itemIndex = this.getAttribute("data-index");
 
-      // If they have more than 1, decrease it
       if (cart[itemIndex].quantity > 1) {
         cart[itemIndex].quantity--;
       } else {
-        // If it drops below 1, remove it from the cart entirely
         cart.splice(itemIndex, 1);
       }
       updateCart();
     });
   });
 
-  // 4. Clear Entire Cart
+  // Clear Entire Cart
   const clearCartBtn = document.getElementById("clear-cart");
   if (clearCartBtn) {
     clearCartBtn.addEventListener("click", function () {
@@ -180,7 +176,9 @@ addToCartButtons.forEach((button) => {
     cartCountDisplay.style.transform = "scale(1.5)";
     setTimeout(() => (cartCountDisplay.style.transform = "scale(1)"), 200);
 
+    // Open Cart and Lock Scroll
     cartOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
   });
 });
 
@@ -188,15 +186,18 @@ addToCartButtons.forEach((button) => {
 cartIcon.addEventListener("click", function (event) {
   event.preventDefault();
   cartOverlay.classList.add("active");
+  document.body.style.overflow = "hidden"; // Lock scroll
 });
 
 closeCartBtn.addEventListener("click", function () {
   cartOverlay.classList.remove("active");
+  document.body.style.overflow = ""; // Unlock scroll
 });
 
 cartOverlay.addEventListener("click", function (event) {
   if (event.target === cartOverlay) {
     cartOverlay.classList.remove("active");
+    document.body.style.overflow = ""; // Unlock scroll
   }
 });
 
@@ -214,6 +215,7 @@ if (shopNowButton && firstProductSection) {
 // Initialize
 updateCart();
 
+// --- 5. Typewriter Animation ---
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
@@ -226,7 +228,7 @@ const textArray = [
 
 const typingDelay = 100;
 const erasingDelay = 50;
-const newTextDelay = 2000; // How long it pauses before erasing
+const newTextDelay = 2000;
 
 let textArrayIndex = 0;
 let charIndex = 0;
@@ -239,7 +241,6 @@ function type() {
     charIndex++;
     setTimeout(type, typingDelay);
   } else {
-    // Finished typing the word, pause before erasing
     cursorSpan.classList.remove("typing");
     setTimeout(erase, newTextDelay);
   }
@@ -256,7 +257,6 @@ function erase() {
     charIndex--;
     setTimeout(erase, erasingDelay);
   } else {
-    // Finished erasing, move to the next word
     cursorSpan.classList.remove("typing");
     textArrayIndex++;
     if (textArrayIndex >= textArray.length) textArrayIndex = 0;
@@ -264,10 +264,11 @@ function erase() {
   }
 }
 
-if (textArray.length) {
+if (textArray.length && typedTextSpan) {
   setTimeout(type, 500);
 }
 
+// --- 6. Checkout & Modals ---
 document.querySelector(".checkout-btn").addEventListener("click", () => {
   const total = document.querySelector(".total-price").innerText;
   const cartItems = document.querySelectorAll(".cart-item");
@@ -277,17 +278,20 @@ document.querySelector(".checkout-btn").addEventListener("click", () => {
     return;
   }
 
+  // Set total and show payment modal
   document.getElementById("modal-total").innerText = total;
   document.getElementById("payment-modal").style.display = "flex";
 
-  const phoneNumber = "+254794199113";
+  // Hide cart drawer & unlock background scroll
+  document.getElementById("cart-overlay").classList.remove("active");
+  document.body.style.overflow = "";
+
+  const phoneNumber = "254794199113"; // No plus sign for WhatsApp links!
   const message = `Hi! I've just sent ${total} for my Vape Store order. Please confirm receipt and process my delivery.`;
 
-  // This encodes the message so it works in a URL
   const encodedMessage = encodeURIComponent(message);
   const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-  // Attach the URL to the green button
   document.getElementById("whatsapp-btn").onclick = () => {
     window.open(whatsappURL, "_blank");
   };
@@ -295,12 +299,9 @@ document.querySelector(".checkout-btn").addEventListener("click", () => {
 
 function copyNumber() {
   let rawNumber = document.getElementById("phone-number").innerText;
-
   let cleanNumber = rawNumber.replace(/\s/g, "");
-
   const icon = document.getElementById("copy-icon");
 
-  // 3. Copy the CLEAN version
   navigator.clipboard
     .writeText(cleanNumber)
     .then(() => {
@@ -318,3 +319,16 @@ function copyNumber() {
       console.error("Failed to copy: ", err);
     });
 }
+
+// Close modals when clicking the dark background
+window.onclick = function (event) {
+  const paymentModal = document.getElementById("payment-modal");
+  const emptyModal = document.getElementById("empty-cart-modal");
+
+  if (event.target == paymentModal) {
+    paymentModal.style.display = "none";
+  }
+  if (event.target == emptyModal) {
+    emptyModal.style.display = "none";
+  }
+};

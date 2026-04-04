@@ -273,7 +273,7 @@ document.querySelector(".checkout-btn").addEventListener("click", () => {
   document.getElementById("modal-total").innerText = total;
   document.getElementById("payment-modal").style.display = "flex";
 
-  const phoneNumber = "254000000000"; // Your actual phone number (no +)
+  const phoneNumber = "+254794199113";
   const message = `Hi! I've just sent ${total} for my Vape Store order. Please confirm receipt and process my delivery.`;
 
   // This encodes the message so it works in a URL

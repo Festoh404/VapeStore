@@ -176,6 +176,73 @@
         </div>
     </div>
 
+    <div id="payment-modal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; justify-content:center; align-items:center; padding:20px;">
+        <div
+            style="background:white; width:100%; max-width:400px; border-radius:12px; overflow:hidden; position:relative; padding:30px; text-align:center;">
+
+            <button onclick="document.getElementById('payment-modal').style.display='none'"
+                style="position:absolute; top:15px; right:15px; border:none; background:none; font-size:20px; cursor:pointer;">&times;</button>
+
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" alt="M-Pesa"
+                style="height:40px; margin-bottom:20px;">
+
+            <h2 style="color:var(--text-dark); margin-bottom:10px;">Complete Payment</h2>
+            <p style="color:var(--text-light); font-size:14px; margin-bottom:25px;">Please send the total amount to the
+                number below:</p>
+
+            <div
+                style="background:#f7fafc; border:1px dashed #cbd5e0; padding:20px; border-radius:8px; margin-bottom:25px;">
+                <span
+                    style="display:block; font-size:11px; color:#718096; text-transform:uppercase; letter-spacing:1px; margin-bottom: 5px;">Recipient
+                    Number</span>
+
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: nowrap;">
+
+                    <strong id="phone-number"
+                        style="font-size:18px; color:var(--text-dark); letter-spacing: 0.5px; white-space: nowrap;">+254
+                        794 199113</strong>
+
+                    <button onclick="copyNumber()" id="copy-btn" title="Copy Number"
+                        style="border: none; background: transparent; padding: 5px; cursor: pointer; transition: all 0.2s; color: #a0aec0; display: flex; align-items: center; flex-shrink: 0;">
+                        <i id="copy-icon" class="far fa-copy" style="font-size: 16px;"></i>
+                    </button>
+
+                </div>
+                <span
+                    style="display:block; font-size:16px; color:var(--primary-red); font-weight:bold; margin-top: 15px;">Total:
+                    <span id="modal-total">KSh 0</span></span>
+            </div>
+            <button id="whatsapp-btn" class="btn-primary"
+                style="width:100%; border:none; padding:15px; background-color: #25D366; color: white; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background 0.3s ease;">
+                <i class="fab fa-whatsapp" style="font-size: 20px;"></i> Confirm via WhatsApp
+            </button>
+
+            <p style="margin-top:15px; font-size:12px; color:#a0aec0;">Your order will be processed immediately after
+                confirmation.</p>
+        </div>
+    </div>
+    <div id="empty-cart-modal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index:20000; justify-content:center; align-items:center; padding:20px;">
+        <div
+            style="background:white; width:100%; max-width:350px; border-radius:12px; padding:30px; text-align:center; box-shadow: 0 15px 30px rgba(0,0,0,0.2);">
+
+            <div
+                style="background: #fff5f5; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <i class="fas fa-shopping-basket" style="color:var(--primary-red); font-size: 24px;"></i>
+            </div>
+
+            <h3 style="color:var(--text-dark); margin-bottom:10px; font-size: 20px;">Your cart is empty</h3>
+            <p style="color:var(--text-light); font-size: 14px; margin-bottom: 25px; line-height: 1.5;">You need to add
+                at least one item to your cart before you can proceed to checkout.</p>
+
+            <button onclick="document.getElementById('empty-cart-modal').style.display='none'" class="btn-primary"
+                style="width:100%; border:none; padding:12px;">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
     <script src="assets/js/app.js"></script>
 </body>
 
